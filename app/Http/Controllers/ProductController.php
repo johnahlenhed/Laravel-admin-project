@@ -67,34 +67,38 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        $product = Product::findOrFail($id);
-        $categories = Category::all();
-        return view('products.edit', compact('product', 'categories'));
+        return view('products.edit', [
+            'categories' => Category::all(),
+            'product' => $product
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, Product $product)
     {
-        $product = Product::findOrFail($id);
-        $product->update($request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'description' => 'required|string'
-        ]));
+        ]);
+
+        $product->update($validated);
+
         return redirect()->route('products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        Product::findOrFail($id)->delete();
+        $product->delete();
         return redirect()->route('products.index');
     }
 }
