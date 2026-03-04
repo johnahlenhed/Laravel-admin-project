@@ -2,19 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ProductRequest $request)
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+
+        $minPrice = $request->input('minPrice');
+        $maxPrice = $request->input('maxPrice');
+        $sort = $request->input('sort', 'asc');
+        $activeCategoryId = $request->input('category');
+
+        $products = Product::
+              when($activeCategoryId, fn($q) => $q->where('category_id', $activeCategoryId))
+            ->when($minPrice !== null, fn($q) => $q->where('price', '>=', $minPrice))
+            ->when($maxPrice !== null, fn($q) => $q->where('price', '<=', $maxPrice))
+            ->orderBy('price', $sort)
+            ->simplePaginate(10);
+
+        return view('products.index', [
+            'products' => $products,
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
