@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-@if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
-
 @section('content')
     <h1>Products</h1>
     <nav>
