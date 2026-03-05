@@ -2,10 +2,6 @@
 
 @section('content')
     <h1>Products</h1>
-    <nav>
-        <a href="{{ route('products.index') }}">Products</a>
-        <a href="{{ route('products.create') }}">Add Product</a>
-    </nav>
     <form action="{{ route('products.index')}}" method="GET">
         <div class="form-group">
                 <label for="category">Category:</label>
