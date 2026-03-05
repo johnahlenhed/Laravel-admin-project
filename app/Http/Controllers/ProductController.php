@@ -27,7 +27,7 @@ class ProductController extends Controller
             ->when($maxPrice !== null, fn($q) => $q->where('price', '<=', $maxPrice))
             ->orderBy('price', $sort)
             ->orderBy('name', 'asc')
-            ->simplePaginate(10);
+            ->paginate(10);
 
         return view('products.index', [
             'products' => $products,
