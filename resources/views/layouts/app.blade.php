@@ -8,10 +8,7 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="{{ route('products.index') }}">Products</a>
-            <a href="{{ route('products.create') }}">Add Product</a>
-        </nav>
+
     </header>
     <main>
         @yield('content')
