@@ -10,7 +10,7 @@
     <header>
     <nav>
         <a href="{{ route('products.index') }}">Products</a>
-        <a href="{{ route('categories.create') }}">Categories</a>
+        <a href="{{ route('categories.index') }}">Categories</a>
     </nav>
     </header>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
