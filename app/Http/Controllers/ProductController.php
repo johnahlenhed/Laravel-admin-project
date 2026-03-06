@@ -16,16 +16,11 @@ class ProductController extends Controller
     public function index(ProductRequest $request)
     {
 
-        $minPrice = $request->input('minPrice');
-        $maxPrice = $request->input('maxPrice');
-        $sort = $request->input('sort', 'asc');
-        $activeCategoryId = $request->input('category');
-
-        $products = Product::
-              when($activeCategoryId, fn($q) => $q->where('category_id', $activeCategoryId))
-            ->when($minPrice !== null, fn($q) => $q->where('price', '>=', $minPrice))
-            ->when($maxPrice !== null, fn($q) => $q->where('price', '<=', $maxPrice))
-            ->orderBy('price', $sort)
+        $products = Product::query()
+            ->when($request->filled('category'), fn($q) => $q->where('category_id', $request->category))
+            ->when($request->filled('minPrice'), fn($q) => $q->where('price', '>=', $request->minPrice))
+            ->when($request->filled('maxPrice'), fn($q) => $q->where('price', '<=', $request->maxPrice))
+            ->orderBy('price', $request->input('sort', 'asc'))
             ->orderBy('name', 'asc')
             ->paginate(10);
 
