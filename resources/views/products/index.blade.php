@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Products</h1>
-    <form action="{{ route('products.index')}}" method="GET">
+    <x-form-input action="{{ route('products.index')}}" method="GET">
         <div class="form-group">
                 <label for="category">Category:</label>
                 <select name="category" id="category" placeholder="Category">
@@ -38,22 +38,26 @@
                 </select>
             </div>
         </div>
-        <button type="submit">Filter</button>
-        <br>
+        <x-primary-button type="submit">Filter</x-primary-button>
         <a href="{{ route('products.index')}}">Remove all filters</a>
-    </form>
+    </x-form-input>
     <hr>
     @forelse($products as $product)
-    <div style="display: flex; align-items: center; gap: 10px;">
+    <x-product-wrapper>
         <p>{{ $product->name }}</p>
         <p>{{ $product->price}} SEK</p>
+        <img src="{{ asset($product->image_url) }}"
+        alt="{{ $product->name }}" 
+        class="w-32 h-32 object-cover"
+        onerror="this.src='https://placehold.co/300x300?text={{ $product->name }}';">
+        <p>{{ $product->description }}</p>
         <a href="{{ route('products.edit', $product->id) }}">Edit</a>
         <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline;">
         @csrf
         @method('DELETE')
-        <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+        <x-danger-button type="submit" onclick="return confirm('Are you sure you want to delete this product?')">Delete</x-danger-button>
         </form>
-    </div>
+    </x-product-wrapper>
     @empty
     <div>No results. <a href="{{route('products.index')}}">Go home</a></div>
     @endforelse
@@ -62,10 +66,4 @@
         {{ $products->links() }}
     </div>
     
-    <div class="logout">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit">Logout</button>
-        </form>
-    </div>
 @endsection
