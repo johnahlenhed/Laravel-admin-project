@@ -8,9 +8,12 @@
 </head>
 <body class="bg-background">
     <header class="bg-secondary border-b-4 border-primary p-4 mb-8">
-    <nav class="flex flex-row">
-        <a class="text-4xl font-bold text-white" href="{{ route('products.index') }}">Products</a>
-        <a class="text-4xl font-bold text-white" href="{{ route('categories.index') }}">Categories</a>
+    <nav class="flex flex-row items-center justify-between">
+        <div class="gap-10 flex flex-row">
+            <a class="text-3xl font-bold text-white hover:scale-107" href="{{ route('products.index') }}">Products</a>
+            <a class="text-3xl font-bold text-white hover:scale-107" href="{{ route('categories.index') }}">Categories</a>
+        </div>
+
         <div class="logout">
         <form method="POST" action="{{ route('logout') }}">
             @csrf

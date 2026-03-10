@@ -13,9 +13,13 @@
 }
 
 @theme {
-    --color-primary: #b8860b; /* dark gold */
-    --color-secondary: #4a4a6a; /* deep purple-navy */
-    --color-background: #f9f6f0; /* warm cream */
-    --color-card: #eee8dc; /* parchment */
-    --color-danger: #c0392b; /* bold red */
+    --color-primary: #e91e8c; /* hot pink */
+    --color-secondary: #2c2c2c; /* near black */
+    --color-background: #fafafa; /* clean white */
+    --color-card: #E3BACF; /* pink */
+    --color-danger: #d32f2f; /* strong red */
+    --color-warning: #f57c00; /* vibrant orange */
+
+    --color-font-primary: #2c2c2c; /* near black */
+    --color-font-secondary: #555555; /* medium gray */
 }
