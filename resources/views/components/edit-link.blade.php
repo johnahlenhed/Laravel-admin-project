@@ -1,3 +1,3 @@
-<a {{ $attributes->merge(['class' => 'bg-warning h-10 text-center text-white font-bold py-2 px-4 rounded max-w-xs']) }}>
+<a {{ $attributes->merge(['class' => 'bg-warning text-white font-bold py-2 px-4 rounded text-center cursor-pointer']) }}>
     {{ $slot }}
 </a>

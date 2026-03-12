@@ -1,38 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
+    <h1 class="text-3xl font-bold text-font-primary mb-6">Edit Product</h1>
 
-    <h1>Edit Product</h1>
-    <x-filter-form action="{{ route('products.update', $product->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" value="{{ $product->name }}" required>
-        </div>
-
-        <div>
-            <label for="category_id">Category:</label>
-            <select id="category_id" name="category_id" required>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-        <div>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" value="{{ $product->price }}" required>
-        </div>
-
-        <div>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description" value="{{ $product->description }}" required>
-        </div>
-        
-        <x-primary-button type="submit">Update Product</x-primary-button>
-    </x-filter-form>
-
+    <div class="bg-card rounded-xl shadow-sm p-6 max-w-lg">
+        <form action="{{ route('products.update', $product->id) }}" method="POST" class="flex flex-col gap-4">
+            @csrf
+            @method('PUT')
+            <div class="flex flex-col gap-1">
+                <x-filter-label for="name">Product Name</x-filter-label>
+                <x-input-field type="text" id="name" name="name" value="{{ $product->name }}" required />
+            </div>
+            <div class="flex flex-col gap-1">
+                <x-filter-label for="category_id">Category</x-filter-label>
+                <x-select id="category_id" name="category_id" required>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </x-select>
+            </div>
+            <div class="flex flex-col gap-1">
+                <x-filter-label for="price">Price (SEK)</x-filter-label>
+                <x-input-field type="number" id="price" name="price" value="{{ $product->price }}" required />
+            </div>
+            <div class="flex flex-col gap-1">
+                <x-filter-label for="description">Description</x-filter-label>
+                <x-input-field type="text" id="description" name="description" value="{{ $product->description }}" required />
+            </div>
+            <x-primary-button type="submit">Update Product</x-primary-button>
+        </form>
+    </div>
 @endsection
