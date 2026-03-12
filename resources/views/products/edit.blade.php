@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Edit Product</h1>
-    <x-form-input action="{{ route('products.update', $product->id) }}" method="POST">
+    <x-filter-form action="{{ route('products.update', $product->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div>
@@ -33,6 +33,6 @@
         </div>
         
         <x-primary-button type="submit">Update Product</x-primary-button>
-    </x-form-input>
+    </x-filter-form>
 
 @endsection
