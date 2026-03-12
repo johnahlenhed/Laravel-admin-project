@@ -25,7 +25,7 @@ This application simulates a web shop admin dashboard where authenticated users 
 
 ### Prerequisites
 
-- PHP 8.2+
+- PHP 8.4+
 - Composer
 - Node.js & npm
 
@@ -40,6 +40,7 @@ npm install
 
 cp .env.example .env
 php artisan key:generate
+php artisan storage:link
 
 php artisan migrate --seed
 composer run dev
