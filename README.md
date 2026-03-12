@@ -13,11 +13,10 @@ This application simulates a web shop admin dashboard where authenticated users 
 - **Category CRUD** — Manage product categories
 - **Filtering** — Filter products by category and price range, with sort by price
 - **Seeders & Factories** — Pre-loaded categories and products for consistent demo data
-- **Accessibility** — Semantic HTML, labeled forms, sufficient color contrast, no color-only indicators, resizable text
 
 ## Tech Stack
 
-- **Backend:** Laravel 12, PHP 8.2+
+- **Backend:** Laravel 12, PHP 8.4+
 - **Frontend:** Blade templates, Tailwind CSS 4
 - **Build:** Vite
 - **Database:** SQLite (default)
