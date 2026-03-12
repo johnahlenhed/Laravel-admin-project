@@ -6,6 +6,7 @@ use App\Http\Requests\ProductIndexRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -44,7 +45,14 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        Product::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image_url'] = $request->file('image')->store('products', 'public');
+        }
+
+        unset($data['image']);
+        Product::create($data);
         return redirect()->route('products.index');
     }
 
@@ -73,8 +81,17 @@ class ProductController extends Controller
 
     public function update(ProductStoreRequest $request, Product $product)
     {
+        $data = $request->validated();
 
-        $product->update($request->validated());
+        if ($request->hasFile('image')) {
+            if ($product->image_url) {
+                Storage::disk('public')->delete($product->image_url);
+            }
+            $data['image_url'] = $request->file('image')->store('products', 'public');
+        }
+
+        unset($data['image']);
+        $product->update($data);
         return redirect()->route('products.index');
     }
 

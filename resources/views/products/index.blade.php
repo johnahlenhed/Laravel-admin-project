@@ -51,10 +51,9 @@
 
             <p class="text-font-secondary text-sm max-w-xs">{{ $product->description }}</p>
 
-            <img src="{{ asset($product->image_url) }}"
+            <img src="{{ $product->image_url ? Storage::url($product->image_url) : 'https://placehold.co/300x300?text=' . urlencode($product->name) }}"
                 alt="{{ $product->name }}"
-                class="w-20 h-20 object-cover rounded-lg"
-                onerror="this.src='https://placehold.co/300x300?text={{ $product->name }}';">
+                class="w-20 h-20 object-cover rounded-lg">
 
             <div class="flex flex-col justify-center items-center gap-2">
                 <x-edit-link href="{{ route('products.edit', $product->id) }}">Edit</x-edit-link>
