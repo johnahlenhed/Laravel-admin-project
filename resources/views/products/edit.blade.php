@@ -23,7 +23,7 @@
             </div>
             <div class="flex flex-col gap-1">
                 <x-filter-label for="price">Price (SEK)</x-filter-label>
-                <x-input-field type="number" id="price" name="price" value="{{ $product->price }}" required />
+                <x-input-field type="number" step=".01" id="price" name="price" value="{{ $product->price }}" required />
             </div>
             <div class="flex flex-col gap-1">
                 <x-filter-label for="description">Description</x-filter-label>

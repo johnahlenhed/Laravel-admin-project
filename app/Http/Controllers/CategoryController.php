@@ -66,7 +66,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->products()->exists()) {
+            return back()->with('error', 'Cannot delete category because it owns products.');
+        }
+
         $category->delete();
-        return redirect()->route('categories.index');
+        return back()->with('success', 'Category deleted successfully.');
     }
 }

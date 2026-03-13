@@ -22,7 +22,7 @@ class CategoryStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:4'
+            'name' => 'required|alpha|min:4|max:80'
         ];
     }
 }
