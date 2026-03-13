@@ -13,12 +13,12 @@
 }
 
 @theme {
-    --color-primary: #e91e8c; /* hot pink */
-    --color-secondary: #2c2c2c; /* near black */
-    --color-background: #fafafa; /* clean white */
-    --color-card: #E3BACF; /* pink */
-    --color-danger: #d32f2f; /* strong red */
-    --color-warning: #f57c00; /* vibrant orange */
+    --color-primary: #1d4ed8;
+    --color-secondary: #1e293b;
+    --color-background: #f8fafc;
+    --color-card: #dbeafe;
+    --color-danger: #dc2626;
+    --color-warning: #d97706;
 
     --color-font-primary: #2c2c2c; /* near black */
     --color-font-secondary: #555555; /* medium gray */
