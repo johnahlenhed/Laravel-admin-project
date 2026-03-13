@@ -44,18 +44,22 @@
     <div class="flex flex-col gap-2 mt-6">
         @forelse($products as $product)
         <x-product-wrapper>
+            <div class="flex items-center gap-4">
+            <img src="{{ $product->image_url ? Storage::url($product->image_url) : 'https://placehold.co/300x300?text=' . urlencode($product->name) }}"
+                alt="{{ $product->name }}"
+                class="w-13 h-13 object-cover rounded-lg">
+
             <div class="min-w-40">
-                <p class="text-primary text-xl font-bold">{{ $product->name }}</p>
+                <p class="text--font-primary text-xl font-bold">{{ $product->name }}</p>
+                <p class="text-font-secondary text-sm">{{ $product->category->name }}</p>
                 <p class="text-font-secondary text-sm mt-1">{{ $product->price }} SEK</p>
             </div>
 
-            <p class="text-font-secondary text-sm max-w-xs">{{ $product->description }}</p>
+            <p class="text-font-primary text-sm max-w-xs">{{ $product->description }}</p>
+            </div>
+            
 
-            <img src="{{ $product->image_url ? Storage::url($product->image_url) : 'https://placehold.co/300x300?text=' . urlencode($product->name) }}"
-                alt="{{ $product->name }}"
-                class="w-20 h-20 object-cover rounded-lg">
-
-            <div class="flex flex-col justify-center items-center gap-2">
+            <div class="flex flex-col justify-center items-right gap-2">
                 <x-edit-link href="{{ route('products.edit', $product->id) }}">Edit</x-edit-link>
                 <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                     @csrf
@@ -65,7 +69,7 @@
             </div>
         </x-product-wrapper>
         @empty
-        <p class="text-font-secondary mt-4">No products found. <a class="text-primary underline" href="{{ route('products.index') }}">Clear filters</a></p>
+        <p class="text-font-primary mt-4">No products found. <a class="text-primary underline" href="{{ route('products.index') }}">Clear filters</a></p>
         @endforelse
     </div>
 

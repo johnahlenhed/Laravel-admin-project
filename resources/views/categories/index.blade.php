@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-3xl font-bold text-font-primary">Categories</h1>
-        <x-edit-link href="{{ route('categories.create') }}">Add Category</x-edit-link>
+        <a class="bg-primary text-white font-bold py-2 px-4 rounded text-center cursor-pointer" href="{{ route('categories.create') }}">Add Category</a>
     </div>
 
     <div class="flex flex-col gap-2">
